@@ -17,8 +17,10 @@ package com.amazonaws.service.apigateway.importer.config;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.service.apigateway.importer.ApiImporterMain;
+import com.amazonaws.service.apigateway.importer.RamlApiImporter;
 import com.amazonaws.service.apigateway.importer.SwaggerApiImporter;
 import com.amazonaws.service.apigateway.importer.impl.sdk.ApiGatewaySdkSwaggerApiImporter;
+import com.amazonaws.service.apigateway.importer.impl.sdk.ApiGatewaySdkRamlApiImporter;
 import com.amazonaws.services.apigateway.AmazonApiGateway;
 import com.amazonaws.services.apigateway.model.ApiGateway;
 import com.google.inject.AbstractModule;
@@ -44,6 +46,7 @@ public class ApiImporterModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(SwaggerApiImporter.class).to(ApiGatewaySdkSwaggerApiImporter.class);
+        bind(RamlApiImporter.class).to(ApiGatewaySdkRamlApiImporter.class);
         bind(String.class).annotatedWith(Names.named("region")).toInstance(region);
     }
 
